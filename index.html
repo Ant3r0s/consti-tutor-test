@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consti-Tutor Test PRO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- ¡NUEVO! Cargamos la librería para leer PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <!-- ¡NUEVO! Cargamos la IA que se ejecuta en el navegador -->
+    <script type="module">
+        import { pipeline, cos_sim } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
+        window.pipeline = pipeline;
+        window.cos_sim = cos_sim;
+    </script>
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <main class="container">
+        <!-- VISTA PRINCIPAL -->
+        <div id="main-view" class="glass-card">
+            <h1>Consti-Tutor Test 📝</h1>
+            <p class="subtitle">Sube cualquier PDF y genera un test al instante.</p>
+            <div class="start-container">
+                <input type="file" id="pdf-upload" accept=".pdf" class="hidden">
+                <label for="pdf-upload" class="action-btn grade-btn">Seleccionar PDF</label>
+            </div>
+            <div id="status-text" class="status-text"></div>
+        </div>
+
+        <!-- VISTA DEL TEST -->
+        <div id="test-view" class="glass-card hidden">
+            <h2 id="test-title">Test de Constitución</h2>
+            <div id="test-container" class="test-container"></div>
+            <button id="grade-test-btn" class="action-btn grade-btn">Corregir Test</button>
+            <div id="results-container" class="results-container hidden">
+                 <div id="feedback-content"></div>
+                 <div class="post-test-actions">
+                    <button id="new-test-btn" class="action-btn">🔄 Nuevo Test</button>
+                    <button id="back-to-main-btn" class="action-btn">🏠 Cambiar PDF</button>
+                 </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
